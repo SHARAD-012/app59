@@ -728,14 +728,17 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
   // Get paginated payments for user payments tab
   const getPaginatedPayments = () => {
     const filtered = getFilteredPayments();
-    const totalItems = filtered.length;
-    const pages = Math.ceil(totalItems / itemsPerPage);
-    setTotalPages(pages);
-    
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return filtered.slice(startIndex, endIndex);
   };
+
+  // Calculate total pages - separate from rendering function
+  useEffect(() => {
+    const filtered = getFilteredPayments();
+    const pages = Math.ceil(filtered.length / itemsPerPage);
+    setTotalPages(pages);
+  }, [payments, appliedPaymentFilters, itemsPerPage]);
 
   // Reset to first page when filters change
   useEffect(() => {
