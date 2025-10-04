@@ -862,14 +862,7 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
                 <h4 className="text-sm font-medium text-slate-800">Self Payment Filters</h4>
-                <span className="text-xs text-slate-500">({invoices.filter(invoice => {
-                  const matchesSearch = !appliedSelfPaymentFilters.searchTerm || 
-                    invoice.invoice_number.toLowerCase().includes(appliedSelfPaymentFilters.searchTerm.toLowerCase()) ||
-                    invoice.total_amount.toString().includes(appliedSelfPaymentFilters.searchTerm);
-                  const matchesAccount = !appliedSelfPaymentFilters.accountId || invoice.account_id === appliedSelfPaymentFilters.accountId;
-                  const matchesStatus = appliedSelfPaymentFilters.status === 'all' || invoice.status === appliedSelfPaymentFilters.status;
-                  return matchesSearch && matchesAccount && matchesStatus;
-                }).length} results)</span>
+                <span className="text-xs text-slate-500">({invoices.length} results)</span>
               </div>
               <div className="flex items-center space-x-2">
                 <button
