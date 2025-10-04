@@ -98,6 +98,11 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
   // Advanced search toggles
   const [showAdvancedPaymentFilters, setShowAdvancedPaymentFilters] = useState(false);
   const [showAdvancedSelfPaymentFilters, setShowAdvancedSelfPaymentFilters] = useState(false);
+
+  // Pagination state for user payments
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
   
   const [sorting, setSorting] = useState({
     field: 'created_at',
