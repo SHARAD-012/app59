@@ -720,6 +720,23 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
     });
   };
 
+  // Get paginated payments for user payments tab
+  const getPaginatedPayments = () => {
+    const filtered = getFilteredPayments();
+    const totalItems = filtered.length;
+    const pages = Math.ceil(totalItems / itemsPerPage);
+    setTotalPages(pages);
+    
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filtered.slice(startIndex, endIndex);
+  };
+
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [appliedPaymentFilters]);
+
   // Only allow admin and super admin to access this component
   if (user.role !== 'admin' && user.role !== 'super_admin') {
     return (
