@@ -103,6 +103,11 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
+
+  // Pagination state for self payments
+  const [selfCurrentPage, setSelfCurrentPage] = useState(1);
+  const [selfItemsPerPage, setSelfItemsPerPage] = useState(10);
+  const [selfTotalPages, setSelfTotalPages] = useState(1);
   
   const [sorting, setSorting] = useState({
     field: 'created_at',
