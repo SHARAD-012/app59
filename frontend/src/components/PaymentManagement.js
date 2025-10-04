@@ -1389,7 +1389,7 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
               <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <span className="text-sm text-slate-600">
+                    <span className="text-sm text-slate-600" data-testid="pagination-info">
                       Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, getFilteredPayments().length)} of {getFilteredPayments().length} payments
                     </span>
                   </div>
@@ -1405,6 +1405,7 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
                           setCurrentPage(1);
                         }}
                         className="px-2 py-1 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-slate-500 focus:border-slate-500"
+                        data-testid="items-per-page-selector"
                       >
                         <option value={5}>5</option>
                         <option value={10}>10</option>
