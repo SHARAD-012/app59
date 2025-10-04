@@ -1465,6 +1465,7 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
                         onClick={() => setCurrentPage(currentPage + 1)}
                         disabled={currentPage === totalPages}
                         className="px-2 py-1 text-sm border border-slate-300 rounded hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                        data-testid="pagination-next"
                       >
                         Next
                       </button>
@@ -1472,6 +1473,7 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
                         onClick={() => setCurrentPage(totalPages)}
                         disabled={currentPage === totalPages}
                         className="px-2 py-1 text-sm border border-slate-300 rounded hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                        data-testid="pagination-last"
                       >
                         Last
                       </button>
