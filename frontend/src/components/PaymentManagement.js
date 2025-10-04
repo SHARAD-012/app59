@@ -1455,6 +1455,7 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
                                 ? 'bg-slate-600 text-white border-slate-600'
                                 : 'border-slate-300 hover:bg-slate-100'
                             }`}
+                            data-testid={`pagination-page-${pageNum}`}
                           >
                             {pageNum}
                           </button>
