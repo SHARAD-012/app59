@@ -859,30 +859,39 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
 
           {/* Enhanced Self Payment Filters */}
           <div className="bg-white border border-slate-200 rounded-lg p-3 shadow-sm">
-            <div className="flex items-center justify-between mb-2">
-              <h4 className="text-sm font-medium text-slate-800">Search & Filter Self Payments</h4>
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
+                <h4 className="text-sm font-medium text-slate-800">Self Payment Filters</h4>
+                <span className="text-xs text-slate-500">({invoices.filter(invoice => {
+                  const matchesSearch = !appliedSelfPaymentFilters.searchTerm || 
+                    invoice.invoice_number.toLowerCase().includes(appliedSelfPaymentFilters.searchTerm.toLowerCase()) ||
+                    invoice.total_amount.toString().includes(appliedSelfPaymentFilters.searchTerm);
+                  const matchesAccount = !appliedSelfPaymentFilters.accountId || invoice.account_id === appliedSelfPaymentFilters.accountId;
+                  const matchesStatus = appliedSelfPaymentFilters.status === 'all' || invoice.status === appliedSelfPaymentFilters.status;
+                  return matchesSearch && matchesAccount && matchesStatus;
+                }).length} results)</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setShowAdvancedSelfPaymentFilters(!showAdvancedSelfPaymentFilters)}
+                  className="flex items-center space-x-1 px-2 py-1 text-xs font-medium text-slate-600 bg-slate-100 rounded hover:bg-slate-200 transition-all"
+                  data-testid="toggle-advanced-self-payment-search"
+                >
+                  <svg className={`w-3 h-3 transform transition-transform ${showAdvancedSelfPaymentFilters ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                  <span>More</span>
+                </button>
                 <button
                   onClick={applySelfPaymentFilters}
                   className="px-3 py-1 text-xs font-medium bg-slate-700 text-white rounded hover:bg-slate-800 transition-colors"
                   data-testid="apply-self-payment-filters"
                 >
-                  Apply Filters
-                </button>
-                <button
-                  onClick={() => setShowAdvancedSelfPaymentFilters(!showAdvancedSelfPaymentFilters)}
-                  className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
-                    showAdvancedSelfPaymentFilters
-                      ? 'bg-slate-600 text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                  data-testid="toggle-advanced-self-payment-search"
-                >
-                  {showAdvancedSelfPaymentFilters ? 'Simple' : 'Advanced'}
+                  Apply
                 </button>
                 <button
                   onClick={clearAllSelfPaymentFilters}
-                  className="px-3 py-1 text-xs font-medium text-slate-600 bg-slate-100 rounded hover:bg-slate-200 transition-colors"
+                  className="px-2 py-1 text-xs font-medium text-slate-600 bg-slate-100 rounded hover:bg-slate-200 transition-colors"
                   data-testid="clear-all-self-payment-filters"
                 >
                   Clear
