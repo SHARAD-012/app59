@@ -1284,7 +1284,7 @@ const PaymentManagement = ({ AuthContext, selectedInvoiceForPayment }) => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
-                  {getFilteredPayments().map((payment) => {
+                  {getPaginatedPayments().map((payment) => {
                     const accountInfo = getAccountInfo(payment.account_id);
                     const profileInfo = getProfileInfo(payment.profile_id);
                     
